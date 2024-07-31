@@ -1,0 +1,33 @@
+// Searching for specific filenames
+DeviceFileEvents
+| where FileName in ("ChromeSetup.msi", "WindowsProgram.msi", "CHROMEUSERINFO.dll")
+| project Timestamp, DeviceName, FileName, SHA256, FolderPath
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+// Searching for shellcodes and malicious loaders by hash
+DeviceFileEvents
+| where SHA256 in ("fc6993a5498a7af0eab9899d86e393e5", "778d517a9de9b93f02e92602f1cfcd6c", "dcadba35680a03e44d91191d0d9a4d47", "678b06ecdbc9b186788cf960332566f9")
+| project Timestamp, DeviceName, FileName, SHA256, FolderPath
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+// Searching for specific URLs
+DeviceNetworkEvents
+| where RemoteUrl in ("104.143.46.143", "mm6695.cyou", "mm6695.icu", "1683.org", "bb6575.cyou", "bbnhh.icu", "nnnjkj.bond", "pplilv.bond", "pplilvbest.cyou", "bngcp.icu", "hzj66.vip")
+| project Timestamp, DeviceName, RemoteUrl, RemotePort, Protocol
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+// Searching for specific IP addresses
+DeviceNetworkEvents
+| where RemoteIP in ("104.143.46.143", "38.181.34.153", "154.23.179.113", "154.23.181.219", "154.19.85.12", "154.19.85.129", "38.181.34.182", "38.181.34.185", "1683.org")
+| project Timestamp, DeviceName, RemoteIP, RemotePort, Protocol
+
+
